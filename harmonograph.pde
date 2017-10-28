@@ -14,7 +14,7 @@ float x, y, t;
 void setup() {
   size(600, 600);
   background(255);
-  randomInit();
+  paramInit();
   step();
 }
 
@@ -25,27 +25,87 @@ void draw() {
   line(mapX(oldX), mapY(oldY), mapX(x), mapY(y));
 }
 
-void mousePressed() {
-  save("curve.png");
+void keyPressed() {
+  boolean restart = true;
+  switch (key) {
+  case 'a' : 
+    ampliInit();
+    break;
+  case 'f':
+    freqInit();
+    break;
+  case 'p':
+    phaseInit();
+    break;
+  case 'd':
+    dampInit();
+    break;
+  case ' ':
+    paramInit();
+    break;
+  case 's':
+    save("curve.png");
+    restart = false;
+    break;
+  case 'v':
+    println("ampliX1 = " + ampliX1 + ";");
+    println("ampliX2 = " + ampliX2 + ";");
+    println("ampliY1 = " + ampliY1 + ";");
+    println("ampliY2 = " + ampliY2 + ";");
+    println("freqX1 = " + freqX1 + ";");
+    println("freqX2 = " + freqX2 + ";");
+    println("freqY1 = " + freqY1 + ";");
+    println("freqY2 = " + freqY2 + ";");
+    println("phaseX1 = " + phaseX1 + ";");
+    println("phaseX2 = " + phaseX2 + ";");
+    println("phaseY1 = " + phaseY1 + ";");
+    println("phaseY2 = " + phaseY2 + ";");
+    println("dampX1 = " + dampX1 + ";");
+    println("dampX2 = " + dampX2 + ";");
+    println("dampY1 = " + dampY1 + ";");
+    println("dampY2 = " + dampY2 + ";");
+    restart = false;
+    break;
+  default:
+    restart = false;
+    break;
+  }
+  if (restart) {
+    background(255);
+    t = 0;
+    step();
+  }
 }
 
-void randomInit() {
+void paramInit() {
+  ampliInit();
+  freqInit();
+  phaseInit();
+  dampInit();
+}
+
+void ampliInit() {
   ampliX1 = random(1);
   ampliX2 = 1 - ampliX1;
   ampliY1 = random(1);
   ampliY2 = 1 - ampliY1;
-  
+}
+
+void freqInit() {
   freqX1 = 1 + int(random(MAX_FREQ));
   freqX2 = 1 + int(random(MAX_FREQ));
   freqY1 = 1 + int(random(MAX_FREQ));
   freqY2 = 1 + int(random(MAX_FREQ));
-  println(freqX1 + " " + freqX2 + " " + freqY1 + " " + freqY2);
-  
+}
+
+void phaseInit() {
   phaseX1 = 0;
   phaseX2 = int(random(PHASE_DIV)) * TWO_PI / PHASE_DIV;
   phaseY1 = int(random(PHASE_DIV)) * TWO_PI / PHASE_DIV;
   phaseY2 = int(random(PHASE_DIV)) * TWO_PI / PHASE_DIV;
-  
+}
+
+void dampInit() {
   dampX1 = random(MIN_DAMP, MAX_DAMP);
   dampX2 = random(MIN_DAMP, MAX_DAMP);
   dampY1 = random(MIN_DAMP, MAX_DAMP);

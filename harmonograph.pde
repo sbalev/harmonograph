@@ -55,6 +55,7 @@ void keyPressed() {
     restart = false;
     break;
   case 'v':
+    println("/**********/");
     println("ampliX1 = " + ampliX1 + ";");
     println("ampliX2 = " + ampliX2 + ";");
     println("ampliY1 = " + ampliY1 + ";");

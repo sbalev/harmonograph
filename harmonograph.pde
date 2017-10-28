@@ -3,6 +3,7 @@ final int PHASE_DIV = 12;
 final float MIN_DAMP = 0.005;
 final float MAX_DAMP = 0.01;
 final float DT = 0.02;
+final float FREQ_PERTURBATION = 0.005;
 
 float ampliX1, ampliX2, ampliY1, ampliY2;
 float freqX1, freqX2, freqY1, freqY2;
@@ -42,6 +43,12 @@ void keyPressed() {
     break;
   case ' ':
     paramInit();
+    break;
+  case 't':
+    freqX1 = round(freqX1) * random(1 - FREQ_PERTURBATION, 1 + FREQ_PERTURBATION);
+    freqX2 = round(freqX2) * random(1 - FREQ_PERTURBATION, 1 + FREQ_PERTURBATION);
+    freqY1 = round(freqY1) * random(1 - FREQ_PERTURBATION, 1 + FREQ_PERTURBATION);
+    freqY2 = round(freqY2) * random(1 - FREQ_PERTURBATION, 1 + FREQ_PERTURBATION);
     break;
   case 's':
     save("curve.png");
@@ -91,7 +98,7 @@ void ampliInit() {
   ampliY2 = 1 - ampliY1;
 }
 
-void freqInit() {
+void freqInit() {  
   freqX1 = 1 + int(random(MAX_FREQ));
   freqX2 = 1 + int(random(MAX_FREQ));
   freqY1 = 1 + int(random(MAX_FREQ));

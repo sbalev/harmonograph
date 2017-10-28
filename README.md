@@ -3,11 +3,12 @@
 Simulation of [harmonograph](https://en.wikipedia.org/wiki/Harmonograph)
 
 To explore parameters, use the following keys:
-  * `a` randomly changes amplitudes
-  * `f` randomly changes frequencies
-  * `p` randomly changes phases
-  * `d` randomly changes damps
+  * `a` randomly changes Amplitudes
+  * `f` randomly changes Frequencies
+  * `p` randomly changes Phases
+  * `d` randomly changes Damps
   * `space` randomly reinitializes all the parameters
+  * `t` slightly perturbs harmonic frequencies. This tends to produce curves that look more 3D and less "mathematical".
   * `s` takes a screenshot in `curve.png`
   * `v` prints current parameter values
 
